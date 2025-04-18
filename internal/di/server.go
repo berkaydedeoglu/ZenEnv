@@ -1,6 +1,7 @@
 //go:build wireinject
+// +build wireinject
 
-package main
+package di
 
 import (
 	"github.com/berkaydedeoglu/zenenv/internal/api"

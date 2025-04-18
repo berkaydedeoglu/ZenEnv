@@ -5,18 +5,32 @@ import (
 )
 
 type Cli struct {
-	cli *urfave.Command
+	Cli *urfave.Command
 }
 
 func NewCli() *Cli {
+	serviceCommands := registerServerCommands()
 	return &Cli{
-		cli: &urfave.Command{
-			Name:     "ZenEnv",
-			Usage:    "a pure environment variable tool",
-			Commands: []*urfave.Command{},
+		Cli: &urfave.Command{
+			Name:  "ZenEnv",
+			Usage: "a pure environment variable tool",
+			Commands: []*urfave.Command{
+				serviceCommands,
+			},
 		},
 	}
 }
 
-func (c *Cli) registerServerCommands() {
+func registerServerCommands() *urfave.Command {
+	return &urfave.Command{
+		Name:  "service",
+		Usage: "to manage zenenv service (server)",
+		Commands: []*urfave.Command{
+			{
+				Name:   "up",
+				Usage:  "starts zenenv server",
+				Action: StartServer,
+			},
+		},
+	}
 }
