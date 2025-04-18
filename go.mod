@@ -1,10 +1,11 @@
-module github.com/berkaydedeoglu/ZenEnv
+module github.com/berkaydedeoglu/zenenv
 
 go 1.23.5
 
 require (
 	github.com/gofiber/fiber/v2 v2.52.6
-	github.com/valyala/fasthttp v1.60.0
+	github.com/google/wire v0.6.0
+	github.com/urfave/cli/v3 v3.1.1
 )
 
 require (
@@ -16,5 +17,6 @@ require (
 	github.com/mattn/go-runewidth v0.0.16 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
+	github.com/valyala/fasthttp v1.60.0 // indirect
 	golang.org/x/sys v0.32.0 // indirect
 )
