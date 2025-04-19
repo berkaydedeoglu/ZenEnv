@@ -23,7 +23,18 @@ func NewServer(
 	}
 }
 
-func (s *Server) StartServer() *fiber.App {
+func (s *Server) StartServer(host string, port string) *fiber.App {
+	// TODO: This appends 7 lines of code to this method. It
+	// will be better if we can fetch from config. Hence config can be changed
+	// on cli method
+	if host != "" {
+		s.host = host
+	}
+
+	if port != "" {
+		s.port = port
+	}
+
 	s.bootstrapServer()
 	s.routes.RegisterHealthRoutes(s.Api)
 

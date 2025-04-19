@@ -15,6 +15,6 @@ func StartServer(ctx context.Context, cmd *cli.Command) error {
 		return err
 	}
 
-	server.StartServer()
+	server.StartServer(cmd.String("host"), cmd.String("port"))
 	return nil
 }
