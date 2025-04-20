@@ -3,42 +3,31 @@ package api
 import (
 	"fmt"
 
+	"github.com/berkaydedeoglu/zenenv/internal/config"
 	"github.com/gofiber/fiber/v2"
 )
 
 type Server struct {
 	Api    *fiber.App
 	routes *ApiRouter
-	host   string
-	port   string
+	config *config.ServerConfig
 }
 
 func NewServer(
 	routes *ApiRouter,
+	config *config.Config,
 ) *Server {
 	return &Server{
-		host:   "0.0.0.0",
-		port:   "6567",
+		config: config.Server,
 		routes: routes,
 	}
 }
 
-func (s *Server) StartServer(host string, port string) *fiber.App {
-	// TODO: This appends 7 lines of code to this method. It
-	// will be better if we can fetch from config. Hence config can be changed
-	// on cli method
-	if host != "" {
-		s.host = host
-	}
-
-	if port != "" {
-		s.port = port
-	}
-
+func (s *Server) StartServer() *fiber.App {
 	s.bootstrapServer()
 	s.routes.RegisterHealthRoutes(s.Api)
 
-	u := fmt.Sprintf("%s:%s", s.host, s.port)
+	u := fmt.Sprintf("%s:%s", s.config.Host, s.config.Port)
 	s.Api.Listen(u)
 	return s.Api
 }

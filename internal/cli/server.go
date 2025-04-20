@@ -8,13 +8,14 @@ import (
 	"github.com/urfave/cli/v3"
 )
 
-func StartServer(ctx context.Context, cmd *cli.Command) error {
+func (c *Cli) StartServer(ctx context.Context, cmd *cli.Command) error {
 	server, err := di.InitializeServer()
 	if err != nil {
 		log.Fatalf("failed to initialize server: %v", err)
 		return err
 	}
 
-	server.StartServer(cmd.String("host"), cmd.String("port"))
+	c.config.Server.SetBindPoints(cmd.String("host"), cmd.String("port"))
+	server.StartServer()
 	return nil
 }

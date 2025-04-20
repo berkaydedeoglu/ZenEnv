@@ -1,35 +1,39 @@
 package cli
 
 import (
+	"github.com/berkaydedeoglu/zenenv/internal/config"
 	urfave "github.com/urfave/cli/v3"
 )
 
 type Cli struct {
-	Cli *urfave.Command
+	Cli    *urfave.Command
+	config *config.Config
 }
 
-func NewCli() *Cli {
-	serviceCommands := registerServerCommands()
-	return &Cli{
+func NewCli(cfg *config.Config) *Cli {
+	c := &Cli{
+		config: cfg,
 		Cli: &urfave.Command{
-			Name:  "zenenv",
-			Usage: "a zen way of managing environment variables",
-			Commands: []*urfave.Command{
-				serviceCommands,
-			},
+			Name:     "zenenv",
+			Usage:    "a zen way of managing environment variables",
+			Commands: []*urfave.Command{},
 		},
 	}
+
+	c.registerServerCommands()
+
+	return c
 }
 
-func registerServerCommands() *urfave.Command {
-	return &urfave.Command{
+func (c *Cli) registerServerCommands() {
+	serverCommand := &urfave.Command{
 		Name:  "server",
 		Usage: "to manage zenenv service (server)",
 		Commands: []*urfave.Command{
 			{
 				Name:   "up",
 				Usage:  "starts zenenv server",
-				Action: StartServer,
+				Action: c.StartServer,
 				Flags: []urfave.Flag{
 					&urfave.StringFlag{
 						Name:  "host",
@@ -43,4 +47,6 @@ func registerServerCommands() *urfave.Command {
 			},
 		},
 	}
+
+	c.Cli.Commands = append(c.Cli.Commands, serverCommand)
 }
