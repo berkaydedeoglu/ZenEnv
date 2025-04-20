@@ -1,18 +1,28 @@
 package cli
 
 import (
+	"github.com/berkaydedeoglu/zenenv/internal/cli/initializer"
 	"github.com/berkaydedeoglu/zenenv/internal/config"
+	"github.com/berkaydedeoglu/zenenv/pkg/printer"
 	urfave "github.com/urfave/cli/v3"
 )
 
 type Cli struct {
-	Cli    *urfave.Command
-	config *config.Config
+	Cli         *urfave.Command
+	config      *config.Config
+	initializer initializer.Initializer
+	printer     *printer.Printer
 }
 
-func NewCli(cfg *config.Config) *Cli {
+func NewCli(
+	cfg *config.Config,
+	i initializer.Initializer,
+	p printer.Printer,
+) *Cli {
 	c := &Cli{
-		config: cfg,
+		config:      cfg,
+		initializer: i,
+		printer:     p,
 		Cli: &urfave.Command{
 			Name:     "zenenv",
 			Usage:    "a zen way of managing environment variables",
