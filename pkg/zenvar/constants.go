@@ -1,7 +1,7 @@
 package zenvar
 
 const (
-	DefaultVersion  = "latest"
+	DefaultTag      = "latest"
 	DefaultProject  = "default"
 	DefaultPlatform = "default"
 )

@@ -19,5 +19,6 @@ require (
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.60.0 // indirect
+	go.etcd.io/bbolt v1.4.0 // indirect
 	golang.org/x/sys v0.32.0 // indirect
 )

@@ -7,7 +7,7 @@ type ZenVar struct {
 	Value    string
 	Project  string
 	Platform string
-	Version  string
+	Tag      string
 }
 
 func NewZenVar(
@@ -15,7 +15,7 @@ func NewZenVar(
 	value string,
 	project string,
 	platform string,
-	version string,
+	tag string,
 ) *ZenVar {
 	zv := createDefaultZenvar()
 
@@ -23,7 +23,7 @@ func NewZenVar(
 	zv.Value = value
 	zv.Project = project
 	zv.Platform = platform
-	zv.Version = version
+	zv.Tag = tag
 
 	return zv
 }
@@ -32,10 +32,14 @@ func createDefaultZenvar() *ZenVar {
 	return &ZenVar{
 		Project:  DefaultProject,
 		Platform: DefaultPlatform,
-		Version:  DefaultVersion,
+		Tag:      DefaultTag,
 	}
 }
 
 func (z *ZenVar) GenerateKey() string {
-	return fmt.Sprintf("%s.%s.%s.%s", z.Project, z.Platform, z.Name, z.Version)
+	return fmt.Sprintf("%s.%s.%s.%s",
+		z.Project,
+		z.Platform,
+		z.Name,
+		z.Tag)
 }
