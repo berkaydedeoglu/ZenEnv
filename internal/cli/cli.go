@@ -17,7 +17,7 @@ type Cli struct {
 func NewCli(
 	cfg *config.Config,
 	i initializer.Initializer,
-	p printer.Printer,
+	p *printer.Printer,
 ) *Cli {
 	c := &Cli{
 		config:      cfg,
