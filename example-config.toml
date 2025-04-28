@@ -2,3 +2,6 @@
 enabled = true
 host = "0.0.0.0"
 port = "6565"
+data_path = "/var/lib/zenenv"
+db_timeout = 5 # seconds
+
