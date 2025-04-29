@@ -21,13 +21,16 @@ func NewFactory(c *config.Config) *Factory {
 func (f *Factory) CreateRepository(repoType string) Repository {
 	switch repoType {
 	case BBoltRepository:
-		return f.CreateBBolt()
+		return f.createBBolt()
 	default:
 		return nil
 	}
 }
 
-func (f *Factory) CreateBBolt() *Bbolt {
+func (f *Factory) createBBolt() *Bbolt {
 	db := db.NewDb(f.config)
 	return NewBbolt(db, f.config)
 }
+
+// compile-time assertion
+var _ RepositoryFactory = (*Factory)(nil)

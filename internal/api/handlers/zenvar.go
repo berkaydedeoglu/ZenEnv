@@ -6,19 +6,19 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-type zenenvHandler struct {
+type ZenenvHandler struct {
 	config  *config.Config
 	service *service.ZenService
 }
 
-func NewZenenvHandler(c *config.Config, z *service.ZenService) *zenenvHandler {
-	return &zenenvHandler{
+func NewZenenvHandler(c *config.Config, z *service.ZenService) *ZenenvHandler {
+	return &ZenenvHandler{
 		config:  c,
 		service: z,
 	}
 }
 
-func (z *zenenvHandler) HandleHealth(ctx *fiber.Ctx) error {
+func (z *ZenenvHandler) HandleHealth(ctx *fiber.Ctx) error {
 	ctx.WriteString("OK")
 	return nil
 }

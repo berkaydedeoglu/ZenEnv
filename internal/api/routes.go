@@ -7,13 +7,16 @@ import (
 
 type ApiRouter struct {
 	healthHandler *handlers.HealthHandler
+	zenenvHandler *handlers.ZenenvHandler
 }
 
 func NewApiRouter(
 	healthHandler *handlers.HealthHandler,
+	zenenvHandler *handlers.ZenenvHandler,
 ) *ApiRouter {
 	return &ApiRouter{
 		healthHandler: healthHandler,
+		zenenvHandler: zenenvHandler,
 	}
 }
 
